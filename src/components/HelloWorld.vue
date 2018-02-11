@@ -86,9 +86,21 @@
 <script>
 export default {
   name: 'HelloWorld',
+  created () {
+    window.vueBus.$on('jsonLoaded', json => {
+      console.log(json)
+    })
+    console.log('Created')
+  },
   data () {
+    console.log('Data')
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Message'
+    }
+  },
+  events: {
+    jsonLoaded (arg) {
+      this.msg = JSON.stringify(arg)
     }
   }
 }

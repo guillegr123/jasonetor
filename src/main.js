@@ -6,6 +6,11 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+// Define a communication bus for internal events
+/* eslint-disable no-new */
+window['vueBus'] = new Vue()
+
+// Create Vue app
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

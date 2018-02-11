@@ -8,5 +8,11 @@
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script>
+      var {ipcRenderer} = require('electron')
+      ipcRenderer.on('jsonLoaded', (event, arg) => {
+        window.vueBus.$emit('jsonLoaded', arg)
+      })
+    </script>
   </body>
 </html>

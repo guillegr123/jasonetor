@@ -5,12 +5,7 @@ const fs = require('fs')
 // Module to manage dialogs
 const {dialog} = require('electron')
 
-// Module to control application life.
-const app = electron.app
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
-// Module to manage menu
-const Menu = electron.Menu
+const {app, BrowserWindow, Menu, ipcMain} = electron;  
 
 const path = require('path')
 const url = require('url')
@@ -49,8 +44,8 @@ function createWindow () {
                     return;
                   }
           
-                  // Change how to handle the file content
-                  BrowserWindow.jsonData = JSON.parse(data);
+                  console.log('Sending message to main window');
+                  mainWindow.webContents.send('jsonLoaded', JSON.parse(data));
                 });
               }
             })
@@ -67,7 +62,9 @@ function createWindow () {
     pathname: path.join(__dirname, 'dist/index.html'),
     protocol: 'file:',
     slashes: true
-  }))
+  }));
+
+  mainWindow.webContents.openDevTools();
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -78,7 +75,7 @@ function createWindow () {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
-  })
+  });
 }
 
 // This method will be called when Electron has finished
