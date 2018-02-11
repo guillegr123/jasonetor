@@ -1,4 +1,7 @@
 const electron = require('electron')
+
+const fs = require('fs')
+
 // Module to manage dialogs
 const {dialog} = require('electron')
 
@@ -29,11 +32,27 @@ function createWindow () {
           label: 'Open',
           click: () => {
             dialog.showOpenDialog({
+              filters: [
+                {
+                  name: 'JSON files',
+                  extensions: [ 'json' ]
+                }
+              ],
               properties: [ 
                 'openFile'
               ]
             }, (filePaths) => {
-              console.log(filePaths);
+              if (filePaths !== undefined) {
+                fs.readFile(filePaths[0], (err, data) => {
+                  if(err){
+                    alert("An error ocurred reading the file :" + err.message);
+                    return;
+                  }
+          
+                  // Change how to handle the file content
+                  console.log("The file content is : " + data);
+                });
+              }
             })
           }
         }
