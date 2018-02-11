@@ -1,7 +1,7 @@
 {
   "name": "jasonetor",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "An (eventually) friendly JSON renderer and editor.",
   "main": "app.js",
   "author": "Guillermo Gutierrez <guillegr123@gmail.com>",
   "private": true,

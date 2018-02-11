@@ -16,6 +16,9 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 
+# build for production and run on electron
+npm start
+
 # run unit tests
 npm run unit
 
