@@ -50,7 +50,7 @@ function createWindow () {
                   }
           
                   // Change how to handle the file content
-                  console.log("The file content is : " + data);
+                  BrowserWindow.jsonData = JSON.parse(data);
                 });
               }
             })
